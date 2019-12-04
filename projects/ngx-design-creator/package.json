@@ -1,0 +1,42 @@
+{
+  "name": "ngx-design-creator",
+  "version": "8.0.4",
+  "description": "A simple to use design creator based on fabric.js for use in Angular",
+  "dependencies": {
+    "@angular/cdk": "^8.x",
+    "@angular/material": "^8.x",
+    "fabric": "3.5.1",
+    "mat-reduce": "0.1.36"
+  },
+  "peerDependencies": {
+    "@angular/animations": "^8.x",
+    "@angular/common": "^8.x",
+    "@angular/compiler": "^8.x",
+    "@angular/forms": "^8.x",
+    "@angular/core": "^8.x",
+    "@angular/platform-browser": "^8.x",
+    "@angular/platform-browser-dynamic": "^8.x",
+    "@angular/router": "^8.x",
+    "rxjs": "^6.x"
+  },
+  "author": "info@joshuamarcus.com.au",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Joshua-Marcus/ngx-design-creator/issues"
+  },
+  "homepage": "https://github.com/Joshua-Marcus/ngx-design-creator#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Joshua-Marcus/ngx-design-creator.git"
+  },
+  "keywords": [
+    "angular",
+    "material",
+    "creator",
+    "design",
+    "ngx",
+    "fabirc.js",
+    "fabric",
+    "canvas"
+  ]
+}

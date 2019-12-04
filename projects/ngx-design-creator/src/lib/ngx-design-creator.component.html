@@ -1,0 +1,118 @@
+
+  <div class="container">
+    <input
+      (change)="addImage(image.files)"
+      class="uploader"
+      type="file"
+      accept="image/*"
+      #image
+    />
+    <p class="red">Production Tip: When adding a new layer, click 'Deselect Object' to revert all objects to their desired position</p>
+  
+    <div class="controls">
+      <div class="control-inner">
+        <div class="border-right">
+          <button
+            matTooltip="Add Image"
+            class="black-icon"
+            (click)="image.click(); $event.preventDefault()"
+            mat-icon-button
+          >
+            <mat-icon>image</mat-icon>
+          </button>
+        </div>
+        <div class="border-right">
+          <button
+            class="black-icon"
+            matTooltip="Add Text"
+            (click)="addText()"
+            mat-icon-button
+          >
+            <mat-icon>text_format</mat-icon>
+          </button>
+        </div>
+        <div class="border-right">
+          <button
+            class="black-icon"
+            matTooltip="Add Shape"
+            (click)="addShape()"
+            mat-icon-button
+          >
+            <mat-icon>crop_square</mat-icon>
+          </button>
+        </div>
+        <div class="border-right">
+          <button
+            class="black-icon"
+            matTooltip="Change Colour"
+            (click)="changeColour()"
+            mat-icon-button
+          >
+            <mat-icon>color_lens</mat-icon>
+          </button>
+        </div>
+      </div>
+      <div class="control-inner">
+          <button class="small-btn" mat-flat-button (click)="setBackground()">
+              Change Background Colour
+            </button>
+            <button class="small-btn" mat-flat-button (click)="clearSelection()">
+                Deselect All Items
+              </button>
+      </div>
+      <div class="control-inner">
+        <div class="border-right">
+            <button
+            class="black-icon"
+            matTooltip="Send Forward"
+            (click)="bringForward()"
+            mat-icon-button
+          >
+            <mat-icon>vertical_align_top</mat-icon>
+          </button>
+        </div>
+        <div class="border-right">
+          <button
+            class="black-icon"
+            matTooltip="Send Backward"
+            (click)="sendBackward()"
+            mat-icon-button
+          >
+            <mat-icon>vertical_align_bottom</mat-icon>
+          </button>
+        </div>
+        <div>
+  
+          <button
+          class="red-icon"
+          matTooltip="Delete"
+          (click)="delete()"
+          mat-icon-button
+        >
+          <mat-icon>delete</mat-icon>
+        </button>
+        </div>
+      </div>
+    </div>
+    <canvas class="canvas" id="canvas" width="960" height="540"></canvas>
+  </div>
+  
+  <ng-template #selectShapeDialog>
+    <h4>Select a shape to add</h4>
+    <div class="shapes">
+      <img mat-dialog-close="ellipse" src="assets/images/icons/circle.png" />
+      <img mat-dialog-close="line" src="assets/images/icons/line.png" />
+      <img mat-dialog-close="rectangle" src="assets/images/icons/square.png" />
+    </div>
+  </ng-template>
+  
+  <ng-template #selectColorDialog>
+    <!-- <form [formGroup]="colorForm">
+      <p>Use the color wheel to select color</p>
+      <form-color formControlName="color"></form-color>
+      <button mat-flat-button color="primary" (click)="this.dialog.closeAll()">
+        Submit
+      </button>
+    </form> -->
+  </ng-template>
+  
