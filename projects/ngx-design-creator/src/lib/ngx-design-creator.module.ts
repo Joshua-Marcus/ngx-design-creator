@@ -15,7 +15,7 @@ import { RouterModule } from "@angular/router";
 import { DesignCreatorComponent } from "./ngx-design-creator.component";
 
 import { AppLoaderComponent } from './loaders/loader.component';
-import { MatReduceModule } from 'mat-reduce';
+import { MatReduceFormsUsing3rdPartyModule } from "./controls/form-control.module";
 
 const sharedComponents = [DesignCreatorComponent];
 
@@ -32,7 +32,7 @@ const sharedComponents = [DesignCreatorComponent];
     MatProgressSpinnerModule,
     MatToolbarModule,
     CommonModule,
-    MatReduceModule,
+    MatReduceFormsUsing3rdPartyModule,
     RouterModule
   ]
 })

@@ -1,4 +1,4 @@
-# ngx-auto-table
+# ngx-design-creator
 A simple to use design creator based on fabric.js for use in Angular
 
 <!-- ## [Demo](https://benwinding.github.io/ngx-auto-table/index.html) -->

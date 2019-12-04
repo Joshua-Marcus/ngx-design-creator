@@ -34,6 +34,9 @@ export class DesignCreatorComponent<T> implements OnInit, OnDestroy {
 
   }
 
+  clearSelection() {
+  }
+
   ngOnInit() {
     this.$onDestroyed.next();
     if (!this.config) {
@@ -45,6 +48,37 @@ export class DesignCreatorComponent<T> implements OnInit, OnDestroy {
 
   ngOnDestroy() {
     this.$onDestroyed.next();
+  }
+  addImage(inputValue) {
+
+  }
+
+  changeColour() {
+
+  }
+
+
+  setBackground() {
+
+  }
+
+  delete() {
+
+  }
+
+  addShape() {
+  }
+
+  bringForward() {
+
+  }
+
+  sendBackward() {
+
+  }
+
+  addText() {
+
   }
 
 

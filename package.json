@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "description": "A simple to use design creator based on fabric.js for use in Angular",
   "scripts": {
-    "start": "ng serve --project=design-demo --port=4222 --watch --vendor-source-map",
+    "start": "ng serve --project=design-demo --port=4222 --watch",
     "build-demo": "ng build --project=design-demo --prod",
     "deploy-demo": "npm run build-demo && gh-pages -d dist/design-demo",
     "watch-lib": "ng build --project=ngx-design-creator --watch",
@@ -25,10 +25,11 @@
     "@angular/platform-browser": "^8.0.0",
     "@angular/platform-browser-dynamic": "^8.0.0",
     "@angular/router": "^8.0.0",
-    "rxjs": "^6.x",
-    "fabric": "3.5.1",
-    "mat-reduce": "0.1.36",
     "core-js": "^2.5.4",
+    "fabric": "3.5.1",
+    "ngx-color-picker": "^8.2.0",
+    "rxjs": "^6.x",
+    "webpack": "^4.41.2",
     "zone.js": "^0.8.26"
   },
   "devDependencies": {
