@@ -7,9 +7,6 @@
       accept="image/*"
       #image
     />
-    <p class="red">Production Tip: When adding a new layer, click 'Deselect Object' to revert all objects to their desired position</p>
-  
-    
     <div class="controls">
       <div class="control-inner">
         <div class="border-right">
@@ -108,12 +105,12 @@
   </ng-template>
   
   <ng-template #selectColorDialog>
-    <!-- <form [formGroup]="colorForm">
+    <form [formGroup]="colorForm">
       <p>Use the color wheel to select color</p>
       <form-color formControlName="color"></form-color>
-      <button mat-flat-button color="primary" (click)="this.dialog.closeAll()">
+      <button mat-flat-button color="primary" (click)="closeDialog()">
         Submit
       </button>
-    </form> -->
+    </form>
   </ng-template>
   

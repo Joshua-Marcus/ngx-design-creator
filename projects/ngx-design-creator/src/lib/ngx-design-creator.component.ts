@@ -1,6 +1,9 @@
 import { Component, OnInit, Input, OnDestroy, ViewChild } from '@angular/core';
 import { Subject } from 'rxjs';
 import { DesignCreatorConfig } from '../public_api';
+import { fabric } from 'fabric';
+import { FormGroup, FormControl } from '@angular/forms';
+import { MatDialog } from '@angular/material';
 
 function blankConfig<T>(): DesignCreatorConfig<T> {
   return {
@@ -17,6 +20,10 @@ function blankConfig<T>(): DesignCreatorConfig<T> {
 export class DesignCreatorComponent<T> implements OnInit, OnDestroy {
   private _blankConfig: DesignCreatorConfig<T> = blankConfig<T>();
   private _config: DesignCreatorConfig<T>;
+  @ViewChild('selectColorDialog', { static: true }) selectColorDialog;
+  canvas: fabric.Canvas;
+
+  colorForm: FormGroup;
   @Input()
   set config(newConfig) {
     this._config = newConfig;
@@ -30,7 +37,7 @@ export class DesignCreatorComponent<T> implements OnInit, OnDestroy {
 
   $onDestroyed = new Subject();
 
-  reInitializeVariables() {
+  constructor(private dialog: MatDialog) {
 
   }
 
@@ -42,15 +49,41 @@ export class DesignCreatorComponent<T> implements OnInit, OnDestroy {
     if (!this.config) {
       return;
     }
-    this.reInitializeVariables();
+    this.canvas = new fabric.Canvas('canvas');
+    this.initForms();
+  }
 
+  initForms() {
+    this.colorForm = new FormGroup({
+      color: new FormControl('')
+    });
+  }
+
+  closeDialog() {
+    this.dialog.closeAll();
   }
 
   ngOnDestroy() {
     this.$onDestroyed.next();
   }
-  addImage(inputValue) {
 
+  addImage(inputValue) {
+    const file: File = inputValue[0];
+    const reader: FileReader = new FileReader();
+    reader.onload = event => {
+      const imgObj = new Image();
+      imgObj.src = event.target['result'] as string;
+      imgObj.onload = () => {
+        const image = new fabric.Image(imgObj);
+        this.canvas.centerObject(image);
+        this.canvas.add(image);
+        this.canvas.renderAll();
+        this.canvas.bringToFront(image);
+        this.canvas.setActiveObject(image);
+
+      };
+    };
+    reader.readAsDataURL(file);
   }
 
   changeColour() {
