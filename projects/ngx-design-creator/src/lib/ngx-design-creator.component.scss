@@ -35,6 +35,28 @@
     background: #2d2d2d;
     color: white;
   }
+
+  .layer-container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+  }
+
+  .canvas-container {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    margin: 20px;
+  }
+
+  .layers {
+    width: 100px;
+    margin-left: 10px;
+    h3 {
+      margin: 0px
+    }
+  }
   
   .uploader {
     display: none;

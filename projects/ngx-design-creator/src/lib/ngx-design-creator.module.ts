@@ -7,6 +7,7 @@ import {
   MatIconModule,
   MatProgressSpinnerModule,
   MatToolbarModule,
+  MatDialogModule
 } from "@angular/material";
 
 
@@ -33,6 +34,7 @@ const sharedComponents = [DesignCreatorComponent];
     MatProgressSpinnerModule,
     MatToolbarModule,
     CommonModule,
+    MatDialogModule,
     FormsModule,
     MatReduceFormsUsing3rdPartyModule,
     RouterModule

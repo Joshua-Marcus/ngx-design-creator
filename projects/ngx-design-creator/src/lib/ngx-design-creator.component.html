@@ -92,7 +92,25 @@
         </div>
       </div>
     </div>
-    <canvas class="canvas" id="canvas" width="960" height="540"></canvas>
+    <div class="canvas-container">
+      <canvas class="canvas" id="canvas" width="960" height="540"></canvas>
+      <div class="layers">
+        <h3>Objects</h3>
+        <div *ngIf="!!layers.length; else noLayers">
+          <mat-card (click)="activateObject(layer)" *ngFor="let layer of layers">
+            <div class="layer-container">
+              <mat-icon>{{layer.icon}}</mat-icon>
+              <p>{{layer.name}}</p>
+              <mat-icon (click)="deleteLayer()">delete</mat-icon>
+
+            </div>
+          </mat-card>
+        </div>
+        <ng-template #noLayers>
+          <p>No Layers...</p>
+        </ng-template>
+      </div>
+    </div>
   </div>
   
   <ng-template #selectShapeDialog>
