@@ -4,6 +4,7 @@ import { DesignCreatorConfig } from "../public_api";
 import { fabric } from "fabric";
 import { FormGroup, FormControl } from "@angular/forms";
 import { MatDialog } from "@angular/material";
+import { take } from "rxjs/operators";
 
 export interface Layer {
   object: fabric.Object;
@@ -31,6 +32,7 @@ export class DesignCreatorComponent<T> implements OnInit, OnDestroy {
   canvas: fabric.Canvas;
   layers: Layer[];
   colorForm: FormGroup;
+  selectedLayer: string;
   @Input()
   set config(newConfig) {
     this._config = newConfig;
@@ -79,36 +81,50 @@ export class DesignCreatorComponent<T> implements OnInit, OnDestroy {
   }
 
   addImage(inputValue) {
-    // Read image valud and add object to fabric canvas.
+    // Read image value and add object to fabric canvas.
     const file: File = inputValue[0];
     const reader: FileReader = new FileReader();
     reader.onload = event => {
       const imgObj = new Image();
       imgObj.src = event.target["result"] as string;
       imgObj.onload = () => {
-        const image = new fabric.Image(imgObj);
+        // Created new fabric image object and scale image down;
+        const image = new fabric.Image(imgObj).scale(0.5);
         this.canvas.centerObject(image);
         this.canvas.add(image);
         this.canvas.renderAll();
         this.canvas.bringToFront(image);
         this.canvas.setActiveObject(image);
-        const imageObject = this.canvas.getActiveObject();
+        // Add image to layers array
         this.layers.push({
-          object: imageObject,
+          object: image,
           name: file.name,
           icon: "image"
         });
-        console.log(this.layers);
+        this.selectedLayer = file.name;
       };
     };
     reader.readAsDataURL(file);
   }
 
-  activateObject(layer) {
+  activateObject(layer: Layer) {
     console.log(layer);
+    this.selectedLayer = layer.name;
+    this.canvas.setActiveObject(layer.object);
+    this.canvas.renderAll();
   }
 
-  changeColour() {}
+  changeColour() {
+    const selectColor = this.dialog.open(this.selectColorDialog);
+    selectColor
+      .afterClosed()
+      .pipe(take(1))
+      .subscribe(() => {
+        const object = this.canvas.getActiveObject();
+        object.set({ fill: `${this.colorForm.get('color').value}` });
+      });
+
+  }
 
   setBackground() {}
 

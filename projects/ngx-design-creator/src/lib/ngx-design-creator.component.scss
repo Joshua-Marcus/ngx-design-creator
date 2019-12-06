@@ -44,17 +44,19 @@
   }
 
   .canvas-container {
-    display: flex;
-    flex-direction: row;
-    align-items: flex-start;
-    margin: 20px;
+    display: grid;
+    grid-template-columns: auto auto;
+    margin-top: 20px;
   }
 
   .layers {
-    width: 100px;
+    max-width: 300px;
     margin-left: 10px;
+    width: 100%;
+    min-width: 200px;
     h3 {
-      margin: 0px
+      margin: 0px;
+      margin-bottom: 10px;
     }
   }
   
@@ -88,6 +90,26 @@
       font-weight: bold;
   }
   
+  .biggerIcon {
+    width: 34px;
+    height: 34px;
+    font-size: 34px;
+  }
+
+  .selectedLayer {
+    margin: 10px;
+    mat-card {
+      border: 4px solid #9a9a9a;
+    }
+  }
+  
+
+  .unselectedLayer {
+    margin: 10px;
+    mat-card {
+      border: unset
+    }
+  }
   
   .black-icon {
     color: #000;

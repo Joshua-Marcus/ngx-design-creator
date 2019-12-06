@@ -95,16 +95,19 @@
     <div class="canvas-container">
       <canvas class="canvas" id="canvas" width="960" height="540"></canvas>
       <div class="layers">
-        <h3>Objects</h3>
+        <h3>Layers</h3>
         <div *ngIf="!!layers.length; else noLayers">
-          <mat-card (click)="activateObject(layer)" *ngFor="let layer of layers">
-            <div class="layer-container">
-              <mat-icon>{{layer.icon}}</mat-icon>
-              <p>{{layer.name}}</p>
-              <mat-icon (click)="deleteLayer()">delete</mat-icon>
-
-            </div>
-          </mat-card>
+          <div [class]="layer.name === this.selectedLayer ? 'selectedLayer' : 'unselectedLayer'" *ngFor="let layer of layers">
+              <mat-card  (click)="activateObject(layer)" >
+                  <div class="layer-container">
+                    <mat-icon class="biggerIcon">{{layer.icon}}</mat-icon>
+                    <p>{{layer.name}}</p>
+                    <mat-icon class="biggerIcon red" (click)="deleteLayer()">delete</mat-icon>
+      
+                  </div>
+                </mat-card>
+          </div>
+       
         </div>
         <ng-template #noLayers>
           <p>No Layers...</p>
