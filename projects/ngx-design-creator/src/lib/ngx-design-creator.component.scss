@@ -77,12 +77,26 @@
   }
   
   .shapes {
-    width: 300px;
+    width: 250px;
     display: flex;
     justify-content: space-between;
-    img {
-      width: 25%;
-    }
+    align-items: center;
+   .circle {
+    height: 60px;
+    background-color: black;
+    width: 60px;
+    border-radius: 50%;
+   }
+   .line {
+    width: 60px;
+    border-top: 5px solid;
+   }
+
+   .square {
+    height: 60px;
+    background-color: black;
+    width: 60px;
+   }
   }
   
   .red {

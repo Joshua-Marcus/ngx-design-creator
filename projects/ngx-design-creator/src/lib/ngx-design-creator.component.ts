@@ -10,6 +10,7 @@ export interface Layer {
   object: fabric.Object;
   icon: string;
   name: string;
+  id: string;
 }
 
 function blankConfig<T>(): DesignCreatorConfig<T> {
@@ -74,10 +75,16 @@ export class DesignCreatorComponent<T> implements OnInit, OnDestroy {
     this.$onDestroyed.next();
   }
 
-  deleteLayer(layer: Layer) {
-    this.canvas.remove(layer.object);
-    const index = this.layers.findIndex(obj => obj.name === obj.name);
+  deleteLayer(object?: fabric.Object) {
+    if(!object) {
+      const object = this.canvas.getActiveObject();
+      this.canvas.remove(object);
+    } else {
+      this.canvas.remove(object);
+    }
+    const index = this.layers.findIndex(obj => obj.object === object);
     this.layers.splice(index, 1);
+    this.selectedLayer = null;
   }
 
   addImage(inputValue) {
@@ -96,12 +103,15 @@ export class DesignCreatorComponent<T> implements OnInit, OnDestroy {
         this.canvas.bringToFront(image);
         this.canvas.setActiveObject(image);
         // Add image to layers array
+        const id = Math.random().toString(12).substring(2, 15)
         this.layers.push({
           object: image,
           name: file.name,
-          icon: "image"
+          icon: "image",
+          id: id
         });
-        this.selectedLayer = file.name;
+        console.log(this.layers);
+        this.selectedLayer = id;
       };
     };
     reader.readAsDataURL(file);
@@ -113,6 +123,7 @@ export class DesignCreatorComponent<T> implements OnInit, OnDestroy {
     this.canvas.setActiveObject(layer.object);
     this.canvas.renderAll();
   }
+
 
   changeColour() {
     const selectColor = this.dialog.open(this.selectColorDialog);
@@ -130,7 +141,73 @@ export class DesignCreatorComponent<T> implements OnInit, OnDestroy {
 
   delete() {}
 
-  addShape() {}
+  addShape() {
+    const selectShape = this.dialog.open(this.selectShapeDialog);
+    selectShape
+      .afterClosed()
+      .pipe(take(1))
+      .subscribe(value => {
+        switch (value) {
+          case 'rectangle':
+            const rectangle = new fabric.Rect({
+              width: 100,
+              height: 100,
+              fill: 'black',
+              opacity: 1,
+              left: 0,
+              top: 0
+            });
+            this.canvas.add(rectangle);
+            this.canvas.bringToFront(rectangle);
+            this.canvas.setActiveObject(rectangle);
+            const id = Math.random().toString(12).substring(2, 15)
+            this.layers.push({
+              object: rectangle,
+              name: 'Square',
+              icon: "crop_square",
+              id: id
+            });
+            this.selectedLayer = id;
+            break;
+          case 'line':
+            const line = new fabric.Line([50, 100, 200, 200], {
+              left: 170,
+              top: 150,
+              stroke: 'black'
+            });
+            this.canvas.add(line);
+            this.canvas.bringToFront(line);
+            this.canvas.setActiveObject(line);
+            const id1 = Math.random().toString(12).substring(2, 15)
+            this.layers.push({
+              object: line,
+              name: 'Line',
+              icon: "crop_square",
+              id: id1
+            });
+            this.selectedLayer = id1;
+            break;
+          case 'ellipse':
+            const ellipse = new fabric.Circle({
+              radius: 50,
+              fill: 'black'
+            });
+            this.canvas.add(ellipse);
+            this.canvas.bringToFront(ellipse);
+            this.canvas.setActiveObject(ellipse);
+            const id2 = Math.random().toString(12).substring(2, 15)
+            this.layers.push({
+              object: ellipse,
+              name: 'Circle',
+              icon: "crop_square",
+              id: id2
+            });
+            this.selectedLayer = id2;
+            break;
+          default:
+        }
+      });
+  }
 
   bringForward() {}
 

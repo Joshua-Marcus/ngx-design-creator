@@ -84,7 +84,7 @@
           <button
           class="red-icon"
           matTooltip="Delete"
-          (click)="delete()"
+          (click)="deleteLayer()"
           mat-icon-button
         >
           <mat-icon>delete</mat-icon>
@@ -97,17 +97,15 @@
       <div class="layers">
         <h3>Layers</h3>
         <div *ngIf="!!layers.length; else noLayers">
-          <div [class]="layer.name === this.selectedLayer ? 'selectedLayer' : 'unselectedLayer'" *ngFor="let layer of layers">
+          <div [class]="layer.id === this.selectedLayer ? 'selectedLayer' : 'unselectedLayer'" *ngFor="let layer of layers">
               <mat-card  (click)="activateLayer(layer)" >
                   <div class="layer-container">
                     <mat-icon class="biggerIcon">{{layer.icon}}</mat-icon>
                     <p>{{layer.name}}</p>
-                    <mat-icon class="biggerIcon red" (click)="deleteLayer()">delete</mat-icon>
-      
+                    <mat-icon class="biggerIcon red" (click)="deleteLayer(layer.object)">delete</mat-icon>
                   </div>
                 </mat-card>
           </div>
-       
         </div>
         <ng-template #noLayers>
           <p>No Layers...</p>
@@ -119,9 +117,15 @@
   <ng-template #selectShapeDialog>
     <h4>Select a shape to add</h4>
     <div class="shapes">
-      <img mat-dialog-close="ellipse" src="assets/images/icons/circle.png" />
-      <img mat-dialog-close="line" src="assets/images/icons/line.png" />
-      <img mat-dialog-close="rectangle" src="assets/images/icons/square.png" />
+      <div mat-dialog-close="ellipse" class="circle">
+
+      </div>
+      <div mat-dialog-close="line" class="line">
+
+      </div>
+      <div mat-dialog-close="rectangle" class="square">
+
+      </div>
     </div>
   </ng-template>
   
