@@ -98,7 +98,7 @@
         <h3>Layers</h3>
         <div *ngIf="!!layers.length; else noLayers">
           <div [class]="layer.name === this.selectedLayer ? 'selectedLayer' : 'unselectedLayer'" *ngFor="let layer of layers">
-              <mat-card  (click)="activateObject(layer)" >
+              <mat-card  (click)="activateLayer(layer)" >
                   <div class="layer-container">
                     <mat-icon class="biggerIcon">{{layer.icon}}</mat-icon>
                     <p>{{layer.name}}</p>

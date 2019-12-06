@@ -107,7 +107,7 @@ export class DesignCreatorComponent<T> implements OnInit, OnDestroy {
     reader.readAsDataURL(file);
   }
 
-  activateObject(layer: Layer) {
+  activateLayer(layer: Layer) {
     console.log(layer);
     this.selectedLayer = layer.name;
     this.canvas.setActiveObject(layer.object);
