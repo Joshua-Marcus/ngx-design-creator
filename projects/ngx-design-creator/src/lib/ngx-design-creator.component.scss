@@ -48,16 +48,22 @@
     grid-template-columns: auto auto;
     margin-top: 20px;
   }
+  .layer-head-container {
+    margin-left: 10px;
+    h3 {
+      margin: 0px;
+      margin-bottom: 10px;
+    }
+  }
 
   .layers {
     max-width: 300px;
     margin-left: 10px;
     width: 100%;
     min-width: 200px;
-    h3 {
-      margin: 0px;
-      margin-bottom: 10px;
-    }
+    height: 550px;
+    overflow: scroll;
+ 
   }
   
   .uploader {

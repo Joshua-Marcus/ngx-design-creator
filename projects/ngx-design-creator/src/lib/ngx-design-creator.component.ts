@@ -139,10 +139,15 @@ export class DesignCreatorComponent<T> implements OnInit, OnDestroy {
 
   }
 
-  setBackground() {}
-
-  delete() {}
-
+  setBackground() {
+    const selectColor = this.dialog.open(this.selectColorDialog);
+    selectColor
+      .afterClosed()
+      .pipe(take(1))
+      .subscribe(value => {
+        this.canvas.setBackgroundColor(this.colorForm.get('color').value, this.canvas.renderAll.bind(this.canvas));
+      });
+  }
   addShape() {
     const selectShape = this.dialog.open(this.selectShapeDialog);
     selectShape

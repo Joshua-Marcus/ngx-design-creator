@@ -54,9 +54,6 @@
           <button class="small-btn" mat-flat-button (click)="setBackground()">
               Change Background Colour
             </button>
-            <button class="small-btn" mat-flat-button (click)="clearSelection()">
-                Deselect All Items
-              </button>
       </div>
       <div class="control-inner">
         <div class="border-right">
@@ -94,19 +91,22 @@
     </div>
     <div class="canvas-container">
       <canvas class="canvas" id="canvas" width="960" height="540"></canvas>
-      <div class="layers">
+      <div class="layer-head-container">
         <h3>Layers</h3>
-        <div *ngIf="!!layers.length; else noLayers">
-          <div [class]="layer.id === this.selectedLayer ? 'selectedLayer' : 'unselectedLayer'" *ngFor="let layer of layers">
-              <mat-card  (click)="activateLayer(layer)" >
-                  <div class="layer-container">
-                    <mat-icon class="biggerIcon">{{layer.icon}}</mat-icon>
-                    <p>{{layer.name}}</p>
-                    <mat-icon class="biggerIcon red" (click)="deleteLayer(layer.object)">delete</mat-icon>
-                  </div>
-                </mat-card>
+        <div class="layers">
+          <div *ngIf="!!layers.length; else noLayers">
+            <div [class]="layer.id === this.selectedLayer ? 'selectedLayer' : 'unselectedLayer'" *ngFor="let layer of layers">
+                <mat-card  (click)="activateLayer(layer)" >
+                    <div class="layer-container">
+                      <mat-icon class="biggerIcon">{{layer.icon}}</mat-icon>
+                      <p>{{layer.name}}</p>
+                      <mat-icon class="biggerIcon red" (click)="deleteLayer(layer.object)">delete</mat-icon>
+                    </div>
+                  </mat-card>
+            </div>
           </div>
         </div>
+
         <ng-template #noLayers>
           <p>No Layers...</p>
         </ng-template>
