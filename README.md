@@ -9,6 +9,10 @@ A design creator based on fabric.js for use in Angular
 - Ability to change shape color
 - Send Layers forward and backward
 
+# Todo
+- Show layers in order of how they are represented on canvas
+- Add config options for ability to change output type.
+
 #### Install
 `yarn add ngx-design-creator`
 
