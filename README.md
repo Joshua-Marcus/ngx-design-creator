@@ -1,15 +1,13 @@
 # ngx-design-creator
-A simple to use design creator based on fabric.js for use in Angular
+A design creator based on fabric.js for use in Angular
 
-<!-- ## [Demo](https://benwinding.github.io/ngx-auto-table/index.html) -->
+## [Demo](https://joshua-marcus.github.io/ngx-design-creator/)
 
 ### Features include
-<!-- - Default filtering and sorting of all data
-- Uses RXJS observables
-- Uses angular material theme and icons under the hood
-- Row and Bulk actions, easily configurable
-- Typed Data passed into the configuration
-- Custom ng-templates for each column -->
+- Ability to add Shapes, Images & Text.
+- Ability to change background colour
+- Ability to change shape color
+- Send Layers forward and backward
 
 #### Install
 `yarn add ngx-design-creator`

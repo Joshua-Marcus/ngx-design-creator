@@ -1,6 +1,6 @@
 {
   "name": "ngx-design-creator",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "A simple to use design creator based on fabric.js for use in Angular",
   "dependencies": {
     "@angular/cdk": "^8.x",
