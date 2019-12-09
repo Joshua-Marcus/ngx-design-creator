@@ -11,6 +11,7 @@ export interface Layer {
   icon: string;
   name: string;
   id: string;
+  index?: number;
 }
 
 function blankConfig<T>(): DesignCreatorConfig<T> {
@@ -106,7 +107,7 @@ export class DesignCreatorComponent<T> implements OnInit, OnDestroy {
         const id = Math.random().toString(12).substring(2, 15)
         this.layers.push({
           object: image,
-          name: file.name,
+          name: `Layer ${this.layers.length + 1}`,
           icon: "image",
           id: id
         });
@@ -164,8 +165,8 @@ export class DesignCreatorComponent<T> implements OnInit, OnDestroy {
             const id = Math.random().toString(12).substring(2, 15)
             this.layers.push({
               object: rectangle,
-              name: 'Square',
-              icon: "crop_square",
+              name: `Layer ${this.layers.length + 1}`,
+              icon: "extension",
               id: id
             });
             this.selectedLayer = id;
@@ -182,8 +183,8 @@ export class DesignCreatorComponent<T> implements OnInit, OnDestroy {
             const id1 = Math.random().toString(12).substring(2, 15)
             this.layers.push({
               object: line,
-              name: 'Line',
-              icon: "crop_square",
+              name: `Layer ${this.layers.length + 1}`,
+              icon: "extension",
               id: id1
             });
             this.selectedLayer = id1;
@@ -199,8 +200,8 @@ export class DesignCreatorComponent<T> implements OnInit, OnDestroy {
             const id2 = Math.random().toString(12).substring(2, 15)
             this.layers.push({
               object: ellipse,
-              name: 'Circle',
-              icon: "crop_square",
+              name: `Layer ${this.layers.length + 1}`,
+              icon: "extension",
               id: id2
             });
             this.selectedLayer = id2;
@@ -210,9 +211,33 @@ export class DesignCreatorComponent<T> implements OnInit, OnDestroy {
       });
   }
 
-  bringForward() {}
+  bringForward() {
+    const object = this.canvas.getActiveObject();
+    this.canvas.bringForward(object);
+  }
 
-  sendBackward() {}
+  sendBackward() {
+    const object = this.canvas.getActiveObject();
+    this.canvas.sendBackwards(object);
+  }
 
-  addText() {}
+  addText() {
+    const text = new fabric.IText('Tap and Type', {
+      fontFamily: 'arial black',
+      left: 100,
+      top: 100
+    });
+    this.canvas.add(text);
+    this.canvas.bringToFront(text);
+    this.canvas.setActiveObject(text);
+    const id = Math.random().toString(12).substring(2, 15)
+    this.layers.push({
+      object: text,
+      name: `Layer ${this.layers.length + 1}`,
+      icon: "text_format",
+      id: id
+    });
+    this.selectedLayer = id;
+
+  }
 }

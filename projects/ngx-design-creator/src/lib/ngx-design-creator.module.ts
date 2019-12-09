@@ -7,7 +7,8 @@ import {
   MatIconModule,
   MatProgressSpinnerModule,
   MatToolbarModule,
-  MatDialogModule
+  MatDialogModule,
+  MatTooltipModule
 } from "@angular/material";
 
 
@@ -18,12 +19,14 @@ import { DesignCreatorComponent } from "./ngx-design-creator.component";
 import { AppLoaderComponent } from './loaders/loader.component';
 import { MatReduceFormsUsing3rdPartyModule } from "./controls/form-control.module";
 import { FormsModule } from "@angular/forms";
+import { ArraySortPipe } from "./utils/order-pipe";
 
 const sharedComponents = [DesignCreatorComponent];
 
 @NgModule({
   declarations: [
     AppLoaderComponent,
+    ArraySortPipe,
     ...sharedComponents,
   ],
   exports: sharedComponents,
@@ -37,7 +40,8 @@ const sharedComponents = [DesignCreatorComponent];
     MatDialogModule,
     FormsModule,
     MatReduceFormsUsing3rdPartyModule,
-    RouterModule
+    RouterModule,
+    MatTooltipModule
   ]
 })
 export class DesignCreatorModule {}
