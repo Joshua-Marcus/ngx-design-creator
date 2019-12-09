@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, OnDestroy, ViewChild } from "@angular/core";
+import { Component, OnInit, Input, OnDestroy, ViewChild, Output, EventEmitter } from "@angular/core";
 import { Subject } from "rxjs";
 import { DesignCreatorConfig } from "../public_api";
 import { fabric } from "fabric";
@@ -42,6 +42,9 @@ export class DesignCreatorComponent<T> implements OnInit, OnDestroy {
       this.ngOnInit();
     });
   }
+
+  @Output() saveImage = new EventEmitter();
+
   get config() {
     return this._config || this._blankConfig;
   }
@@ -67,6 +70,10 @@ export class DesignCreatorComponent<T> implements OnInit, OnDestroy {
       color: new FormControl("")
     });
   }
+
+  saveImageDataURL() { // You can give any function name
+    this.saveImage.emit(this.canvas.toDataURL());
+}
 
   closeDialog() {
     this.dialog.closeAll();
@@ -97,7 +104,7 @@ export class DesignCreatorComponent<T> implements OnInit, OnDestroy {
       imgObj.src = event.target["result"] as string;
       imgObj.onload = () => {
         // Created new fabric image object and scale image down;
-        const image = new fabric.Image(imgObj).scale(0.5);
+        const image = new fabric.Image(imgObj).scale(0.2);
         this.canvas.centerObject(image);
         this.canvas.add(image);
         this.canvas.renderAll();
@@ -136,8 +143,8 @@ export class DesignCreatorComponent<T> implements OnInit, OnDestroy {
         const object = this.canvas.getActiveObject();
         object.set({ fill: `${this.colorForm.get('color').value}` });
       });
-
   }
+
 
   setBackground() {
     const selectColor = this.dialog.open(this.selectColorDialog);
