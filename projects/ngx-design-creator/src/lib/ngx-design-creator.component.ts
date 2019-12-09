@@ -119,7 +119,8 @@ export class DesignCreatorComponent<T> implements OnInit, OnDestroy {
 
   activateLayer(layer: Layer) {
     console.log(layer);
-    this.selectedLayer = layer.name;
+    this.selectedLayer = layer.id;
+    console.log(this.selectedLayer);
     this.canvas.setActiveObject(layer.object);
     this.canvas.renderAll();
   }
