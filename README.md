@@ -1,9 +1,9 @@
 # ngx-design-creator
 A design creator based on fabric.js for use in Angular
 
-## [Demo](https://joshua-marcus.github.io/ngx-design-creator/)
+# [Demo](https://joshua-marcus.github.io/ngx-design-creator/)
 
-### Features include
+# Features include
 - Ability to add Shapes, Images & Text.
 - Ability to change background colour
 - Ability to change shape color
